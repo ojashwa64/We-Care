@@ -24,12 +24,13 @@
             background-color: #fff9fb;
             color: var(--dark);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
         
         @keyframes pulse {
@@ -38,14 +39,26 @@
             100% { transform: scale(1); }
         }
         
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
         header {
             background: linear-gradient(135deg, var(--primary), #ff8fab);
             color: white;
-            padding: 1rem;
+            padding: 2rem 1rem;
             text-align: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease-out;
         }
         
         .header-decoration {
@@ -54,11 +67,13 @@
             height: 200px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
         }
         
         .decoration-1 {
             top: -50px;
             left: -50px;
+            animation-delay: 0.5s;
         }
         
         .decoration-2 {
@@ -66,6 +81,7 @@
             right: -30px;
             width: 300px;
             height: 300px;
+            animation-delay: 1s;
         }
         
         nav {
@@ -77,6 +93,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            animation: fadeIn 1s ease-out;
         }
         
         nav a {
@@ -115,7 +132,7 @@
         }
         
         .hero {
-            background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            background: linear-gradient(rgba(0,0,0,0.4), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat);
             height: 500px;
             display: flex;
             align-items: center;
@@ -126,16 +143,7 @@
             border-radius: 15px;
             overflow: hidden;
             margin: 1rem;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.4);
+            animation: fadeIn 1s ease-out;
         }
         
         .hero-content {
@@ -143,18 +151,21 @@
             z-index: 1;
             max-width: 800px;
             padding: 2rem;
+            animation: fadeIn 1.5s ease-out;
         }
         
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease-out;
         }
         
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fadeIn 1.5s ease-out;
         }
         
         .btn {
@@ -171,6 +182,7 @@
             box-shadow: 0 4px 15px rgba(255,107,152,0.3);
             position: relative;
             overflow: hidden;
+            animation: fadeIn 2s ease-out;
         }
         
         .btn::after {
@@ -221,7 +233,16 @@
             position: relative;
             transform-style: preserve-3d;
             perspective: 1000px;
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
         }
+        
+        .service-card:nth-child(1) { animation-delay: 0.2s; }
+        .service-card:nth-child(2) { animation-delay: 0.4s; }
+        .service-card:nth-child(3) { animation-delay: 0.6s; }
+        .service-card:nth-child(4) { animation-delay: 0.8s; }
+        .service-card:nth-child(5) { animation-delay: 1s; }
+        .service-card:nth-child(6) { animation-delay: 1.2s; }
         
         .service-card:hover {
             transform: translateY(-10px) rotateY(5deg);
@@ -259,290 +280,9 @@
             font-size: 1.2rem;
         }
         
-        .booking-section {
-            background-color: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 4rem 0;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .booking-section::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: -10px;
-            background: rgba(255,107,152,0.1);
-            border-radius: 15px;
-            z-index: -1;
-            transform: translateZ(-10px);
-        }
-        
-        .booking-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-            color: var(--dark);
-        }
-        
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s;
-            background: #f9f9f9;
-        }
-        
-        .form-group input:focus, 
-        .form-group select:focus, 
-        .form-group textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255,107,152,0.2);
-            outline: none;
-            background: white;
-        }
-        
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-        
-        .calendar-container {
-            background: #f9f9f9;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 1rem 0;
-        }
-        
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .calendar-nav {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .calendar-nav:hover {
-            background: #ff4785;
-        }
-        
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 0.5rem;
-        }
-        
-        .calendar-day-header {
-            font-weight: bold;
-            text-align: center;
-            padding: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .calendar-day {
-            padding: 0.8rem;
-            text-align: center;
-            border: 1px solid #eee;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-        }
-        
-        .calendar-day:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: scale(1.1);
-        }
-        
-        .calendar-day.disabled {
-            color: #ccc;
-            cursor: not-allowed;
-            background-color: #f9f9f9;
-            transform: none;
-        }
-        
-        .calendar-day.selected {
-            background-color: var(--primary);
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 0 0 10px rgba(255,107,152,0.5);
-        }
-        
-        .time-slots {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .time-slot {
-            padding: 0.8rem 1.2rem;
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        
-        .time-slot:hover {
-            background-color: #ddd;
-            transform: translateY(-2px);
-        }
-        
-        .time-slot.selected {
-            background-color: var(--primary);
-            color: white;
-            box-shadow: 0 4px 8px rgba(255,107,152,0.3);
-        }
-        
-        .payment-section {
-            display: none;
-            background-color: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 4rem 0;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .payment-section::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: -10px;
-            background: rgba(166, 219, 250, 0.1);
-            border-radius: 15px;
-            z-index: -1;
-            transform: translateZ(-10px);
-        }
-        
-        .payment-methods {
-            display: flex;
-            gap: 1.5rem;
-            margin: 2rem 0;
-        }
-        
-        .payment-method {
-            padding: 1.5rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-            flex: 1;
-            background: white;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .payment-method:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-        
-        .payment-method.selected {
-            border-color: var(--primary);
-            background-color: rgba(255,107,152,0.1);
-            box-shadow: 0 5px 15px rgba(255,107,152,0.2);
-            transform: translateY(-5px) rotateY(10deg);
-        }
-        
-        .payment-method i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .payment-form {
-            display: none;
-            background: #f9f9f9;
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 1.5rem;
-            animation: fadeIn 0.5s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .confirmation {
-            display: none;
-            text-align: center;
-            padding: 3rem;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 4rem 0;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-        }
-        
-        .confirmation::before {
-            content: '';
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: -10px;
-            background: rgba(76, 175, 80, 0.1);
-            border-radius: 15px;
-            z-index: -1;
-            transform: translateZ(-10px);
-        }
-        
-        .confirmation i {
-            font-size: 5rem;
-            color: #4caf50;
-            margin-bottom: 1.5rem;
-            animation: pulse 2s infinite;
-        }
-        
-        .confirmation h2 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        #confirm-message {
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-        
         .testimonials {
             margin: 4rem 0;
+            animation: fadeIn 1s ease-out;
         }
         
         .testimonial-slider {
@@ -551,11 +291,11 @@
             scroll-snap-type: x mandatory;
             gap: 2rem;
             padding: 1rem 0;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
         
         .testimonial-slider::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
+            display: none;
         }
         
         .testimonial-card {
@@ -640,7 +380,16 @@
             transform-style: preserve-3d;
             perspective: 1000px;
             transition: all 0.3s;
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
         }
+        
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
+        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
         
         .gallery-item:hover {
             transform: rotateY(5deg) scale(1.03);
@@ -699,6 +448,7 @@
             margin-top: 4rem;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease-out;
         }
         
         .footer-content {
@@ -766,6 +516,7 @@
             transform-style: preserve-3d;
             transition: all 0.5s;
             position: relative;
+            animation: fadeIn 1s ease-out;
         }
         
         .product-card:hover {
@@ -809,6 +560,7 @@
             margin: 4rem 0;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease-out;
         }
         
         .newsletter::before {
@@ -820,6 +572,7 @@
             height: 200px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
         }
         
         .newsletter::after {
@@ -831,6 +584,7 @@
             height: 300px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
         }
         
         .newsletter-content {
@@ -862,6 +616,12 @@
             border: none;
             border-radius: 50px 0 0 50px;
             font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-form input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
         }
         
         .newsletter-form button {
@@ -877,6 +637,7 @@
         
         .newsletter-form button:hover {
             background: #222;
+            transform: translateX(5px);
         }
         
         /* Loyalty Program */
@@ -887,6 +648,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 4rem 0;
             text-align: center;
+            animation: fadeIn 1s ease-out;
         }
         
         .loyalty-cards {
@@ -906,7 +668,13 @@
             transition: all 0.3s;
             transform-style: preserve-3d;
             perspective: 1000px;
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
         }
+        
+        .loyalty-card:nth-child(1) { animation-delay: 0.2s; }
+        .loyalty-card:nth-child(2) { animation-delay: 0.4s; }
+        .loyalty-card:nth-child(3) { animation-delay: 0.6s; }
         
         .loyalty-card:hover {
             transform: rotateY(10deg) translateY(-10px);
@@ -917,6 +685,12 @@
             font-size: 3rem;
             color: var(--primary);
             margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .loyalty-card:hover i {
+            transform: scale(1.2) rotate(10deg);
+            color: #ff4785;
         }
         
         .loyalty-card h3 {
@@ -929,6 +703,91 @@
             margin-bottom: 1.5rem;
         }
         
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 4rem 0;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .contact-form h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
+        
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255,107,152,0.2);
+            outline: none;
+            background: white;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+        }
+        
+        /* Section Headings */
+        .section-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        
+        .section-subheading {
+            text-align: center;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1s ease-out;
+        }
+        
         /* Mobile Menu */
         .mobile-menu-btn {
             display: none;
@@ -937,20 +796,17 @@
             color: white;
             font-size: 1.5rem;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
         }
         
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 2.5rem;
-            }
-            
-            .payment-methods {
-                flex-direction: column;
-            }
-            
-            .payment-method {
-                width: 100%;
             }
         }
         
@@ -976,14 +832,6 @@
                 position: absolute;
                 top: 1rem;
                 right: 1rem;
-            }
-            
-            .booking-form {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-group.full-width {
-                grid-column: span 1;
             }
             
             .hero {
@@ -1020,6 +868,10 @@
             .service-card {
                 min-width: 100%;
             }
+            
+            .section-heading {
+                font-size: 1.5rem;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -1032,6 +884,8 @@
         <div class="bubble" style="width: 150px; height: 150px; top: 70%; left: 80%; animation-duration: 20s;"></div>
         <div class="bubble" style="width: 80px; height: 80px; top: 40%; left: 30%; animation-duration: 12s;"></div>
         <div class="bubble" style="width: 120px; height: 120px; top: 20%; left: 70%; animation-duration: 18s;"></div>
+        <div class="bubble" style="width: 90px; height: 90px; top: 60%; left: 15%; animation-duration: 14s;"></div>
+        <div class="bubble" style="width: 110px; height: 110px; top: 30%; left: 85%; animation-duration: 16s;"></div>
     </div>
     
     <header>
@@ -1047,7 +901,6 @@
     <nav id="mainNav">
         <a href="#home">Home</a>
         <a href="#services">Services</a>
-        <a href="#booking">Book Now</a>
         <a href="#products">Products</a>
         <a href="#gallery">Gallery</a>
         <a href="#testimonials">Testimonials</a>
@@ -1060,12 +913,14 @@
             <div class="hero-content">
                 <h1>Look Good, Feel Great</h1>
                 <p>Professional beauty services tailored just for you. Experience luxury and relaxation like never before.</p>
-                <a href="#booking" class="btn">Book Now</a>
+                <a href="#services" class="btn">Explore Services</a>
             </div>
         </section>
         
         <section id="services">
-            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: var(--primary);">Our Premium Services</h2>
+            <h2 class="section-heading">Our Premium Services</h2>
+            <p class="section-subheading">Discover our range of beauty treatments designed to enhance your natural beauty and provide ultimate relaxation.</p>
+            
             <div class="services">
                 <div class="service-card">
                     <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');"></div>
@@ -1073,7 +928,7 @@
                         <h3>Hair Styling</h3>
                         <p>Professional haircuts, styling, and treatments for all hair types. Our expert stylists will give you the perfect look.</p>
                         <div class="price">From ₹500</div>
-                        <a href="#booking" class="btn">Book Now</a>
+                        <a href="#contact" class="btn">Contact Us</a>
                     </div>
                 </div>
                 
@@ -1083,7 +938,7 @@
                         <h3>Facial & Skin Care</h3>
                         <p>Rejuvenating facials and skin treatments for a glowing complexion. Experience our premium skincare products.</p>
                         <div class="price">From ₹800</div>
-                        <a href="#booking" class="btn">Book Now</a>
+                        <a href="#contact" class="btn">Contact Us</a>
                     </div>
                 </div>
                 
@@ -1093,7 +948,7 @@
                         <h3>Manicure & Pedicure</h3>
                         <p>Nail care services including polish, gel, and nail art. Relax while we pamper your hands and feet.</p>
                         <div class="price">From ₹600</div>
-                        <a href="#booking" class="btn">Book Now</a>
+                        <a href="#contact" class="btn">Contact Us</a>
                     </div>
                 </div>
                 
@@ -1103,7 +958,7 @@
                         <h3>Makeup Artistry</h3>
                         <p>Professional makeup for any occasion. From natural looks to glamorous evening makeup.</p>
                         <div class="price">From ₹1200</div>
-                        <a href="#booking" class="btn">Book Now</a>
+                        <a href="#contact" class="btn">Contact Us</a>
                     </div>
                 </div>
                 
@@ -1113,7 +968,7 @@
                         <h3>Waxing & Threading</h3>
                         <p>Hair removal services with minimal discomfort. Our experts use premium products for smooth skin.</p>
                         <div class="price">From ₹300</div>
-                        <a href="#booking" class="btn">Book Now</a>
+                        <a href="#contact" class="btn">Contact Us</a>
                     </div>
                 </div>
                 
@@ -1123,15 +978,15 @@
                         <h3>Spa Treatments</h3>
                         <p>Relaxing massage and body treatments. Rejuvenate your body and mind with our spa packages.</p>
                         <div class="price">From ₹1500</div>
-                        <a href="#booking" class="btn">Book Now</a>
+                        <a href="#contact" class="btn">Contact Us</a>
                     </div>
                 </div>
             </div>
         </section>
         
         <section id="products" class="product-card">
-            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: var(--primary);">Our Premium Products</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">We use only the highest quality products to ensure the best results for our clients.</p>
+            <h2 class="section-heading">Our Premium Products</h2>
+            <p class="section-subheading">We use only the highest quality products to ensure the best results for our clients.</p>
             
             <div class="services">
                 <div class="service-card">
@@ -1140,7 +995,7 @@
                         <h3>Hair Care Line</h3>
                         <p>Professional shampoos, conditioners, and treatments for all hair types. Nourish and protect your hair.</p>
                         <div class="price">From ₹800</div>
-                        <a href="#" class="btn">Shop Now</a>
+                        <a href="#contact" class="btn">Inquire Now</a>
                     </div>
                 </div>
                 
@@ -1150,7 +1005,7 @@
                         <h3>Skincare Collection</h3>
                         <p>Cleansers, moisturizers, and serums for a radiant complexion. Dermatologist tested formulas.</p>
                         <div class="price">From ₹1200</div>
-                        <a href="#" class="btn">Shop Now</a>
+                        <a href="#contact" class="btn">Inquire Now</a>
                     </div>
                 </div>
                 
@@ -1160,174 +1015,15 @@
                         <h3>Nail Care Products</h3>
                         <p>Premium polishes, treatments, and care products. Salon-quality results at home.</p>
                         <div class="price">From ₹500</div>
-                        <a href="#" class="btn">Shop Now</a>
+                        <a href="#contact" class="btn">Inquire Now</a>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <section id="booking" class="booking-section">
-            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: var(--primary);">Book Your Appointment</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Fill out the form below to schedule your beauty treatment with us.</p>
-            
-            <form id="appointment-form" class="booking-form">
-                <div class="form-group">
-                    <label for="name">Full Name*</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number*</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address*</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="service">Select Service*</label>
-                    <select id="service" name="service" required>
-                        <option value="">-- Select a Service --</option>
-                        <option value="haircut">Haircut & Styling (₹500-1500)</option>
-                        <option value="facial">Premium Facial (₹800-2500)</option>
-                        <option value="manicure">Manicure (₹600-1200)</option>
-                        <option value="pedicure">Pedicure (₹700-1500)</option>
-                        <option value="makeup">Makeup Application (₹1200-5000)</option>
-                        <option value="waxing">Waxing (₹300-1000)</option>
-                        <option value="spa">Spa Treatment (₹1500-5000)</option>
-                    </select>
-                </div>
-                
-                <div class="form-group full-width">
-                    <label>Select Date*</label>
-                    <div class="calendar-container">
-                        <div class="calendar-header">
-                            <button type="button" class="calendar-nav" id="prev-month"><i class="fas fa-chevron-left"></i></button>
-                            <h3 id="current-month">May 2023</h3>
-                            <button type="button" class="calendar-nav" id="next-month"><i class="fas fa-chevron-right"></i></button>
-                        </div>
-                        <div class="calendar" id="calendar">
-                            <div class="calendar-day-header">Sun</div>
-                            <div class="calendar-day-header">Mon</div>
-                            <div class="calendar-day-header">Tue</div>
-                            <div class="calendar-day-header">Wed</div>
-                            <div class="calendar-day-header">Thu</div>
-                            <div class="calendar-day-header">Fri</div>
-                            <div class="calendar-day-header">Sat</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group full-width">
-                    <label>Select Time Slot*</label>
-                    <div class="time-slots" id="time-slots"></div>
-                </div>
-                
-                <div class="form-group full-width">
-                    <label for="notes">Special Requests</label>
-                    <textarea id="notes" name="notes" rows="3"></textarea>
-                </div>
-                
-                <div class="form-group full-width" style="text-align: center;">
-                    <button type="button" id="continue-to-payment" class="btn">Continue to Payment</button>
-                </div>
-            </form>
-        </section>
-        
-        <section class="payment-section">
-            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: var(--primary);">Payment Information</h2>
-            
-            <div class="booking-summary" style="background: #f9f9f9; padding: 1.5rem; border-radius: 10px; margin-bottom: 2rem;">
-                <h3 style="margin-bottom: 1rem; color: var(--primary);">Booking Summary</h3>
-                <p id="summary-service">Service: Haircut & Styling</p>
-                <p id="summary-date">Date: May 15, 2023</p>
-                <p id="summary-time">Time: 2:00 PM</p>
-                <p id="summary-price">Price: ₹800</p>
-            </div>
-            
-            <h3 style="margin: 2rem 0 1rem; color: var(--primary);">Select Payment Method</h3>
-            <div class="payment-methods">
-                <div class="payment-method" data-method="credit">
-                    <i class="far fa-credit-card"></i>
-                    <h4>Credit/Debit Card</h4>
-                    <p>Pay with Visa, Mastercard, or other cards</p>
-                </div>
-                
-                <div class="payment-method" data-method="upi">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h4>UPI Payment</h4>
-                    <p>Pay using any UPI app</p>
-                </div>
-                
-                <div class="payment-method" data-method="wallet">
-                    <i class="fas fa-wallet"></i>
-                    <h4>Digital Wallet</h4>
-                    <p>Paytm, PhonePe, Google Pay</p>
-                </div>
-            </div>
-            
-            <div id="credit-form" class="payment-form">
-                <div class="form-group">
-                    <label for="card-number">Card Number*</label>
-                    <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="card-name">Name on Card*</label>
-                    <input type="text" id="card-name" name="card-name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="card-expiry">Expiry Date*</label>
-                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="card-cvv">CVV*</label>
-                    <input type="text" id="card-cvv" name="card-cvv" placeholder="123" required>
-                </div>
-            </div>
-            
-            <div id="upi-form" class="payment-form">
-                <div class="form-group full-width">
-                    <label for="upi-id">UPI ID*</label>
-                    <input type="text" id="upi-id" name="upi-id" placeholder="yourname@upi" required>
-                </div>
-                
-                <div class="form-group full-width">
-                    <p style="text-align: center; margin-top: 1rem;">You will be redirected to your UPI app for payment confirmation</p>
-                </div>
-            </div>
-            
-            <div id="wallet-form" class="payment-form">
-                <div class="form-group full-width">
-                    <label for="wallet-number">Mobile Number*</label>
-                    <input type="text" id="wallet-number" name="wallet-number" placeholder="Registered wallet number" required>
-                </div>
-                
-                <div class="form-group full-width">
-                    <p style="text-align: center; margin-top: 1rem;">You will receive an OTP to confirm your payment</p>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <button type="button" id="confirm-payment" class="btn">Confirm Payment</button>
-            </div>
-        </section>
-        
-        <section class="confirmation">
-            <i class="fas fa-check-circle"></i>
-            <h2>Appointment Confirmed!</h2>
-            <p id="confirm-message">Your appointment for Haircut & Styling on May 15, 2023 at 2:00 PM has been confirmed.</p>
-            <p>We've sent the details to your email. Please arrive 10 minutes before your appointment.</p>
-            <a href="#home" class="btn" style="margin-top: 1.5rem;">Back to Home</a>
         </section>
         
         <section id="testimonials" class="testimonials">
-            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: var(--primary);">What Our Clients Say</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Don't just take our word for it - hear from our satisfied customers</p>
+            <h2 class="section-heading">What Our Clients Say</h2>
+            <p class="section-subheading">Don't just take our word for it - hear from our satisfied customers</p>
             
             <div class="testimonial-slider">
                 <div class="testimonial-card">
@@ -1385,8 +1081,8 @@
         </section>
         
         <section id="gallery" class="gallery-section">
-            <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: var(--primary);">Our Work Gallery</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Browse through some of our recent work and transformations</p>
+            <h2 class="section-heading">Our Work Gallery</h2>
+            <p class="section-subheading">Browse through some of our recent work and transformations</p>
             
             <div class="gallery">
                 <div class="gallery-item">
@@ -1422,8 +1118,8 @@
         </section>
         
         <section class="loyalty-program">
-            <h2 style="text-align: center; margin-bottom: 1rem; font-size: 2rem; color: var(--primary);">Loyalty Rewards Program</h2>
-            <p style="text-align: center; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            <h2 class="section-heading">Loyalty Rewards Program</h2>
+            <p class="section-subheading">
                 Join our loyalty program and earn points with every visit that can be redeemed for discounts, free services, and exclusive perks.
             </p>
             
@@ -1432,23 +1128,83 @@
                     <i class="fas fa-gem"></i>
                     <h3>Bronze Level</h3>
                     <p>Earn 1 point for every ₹100 spent. Redeem 100 points for ₹500 off.</p>
-                    <a href="#" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
+                    <a href="#contact" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
                 </div>
                 
                 <div class="loyalty-card">
                     <i class="fas fa-crown"></i>
                     <h3>Silver Level</h3>
                     <p>Earn 1.5 points for every ₹100 spent. Get a free facial after 5 visits.</p>
-                    <a href="#" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
+                    <a href="#contact" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
                 </div>
                 
                 <div class="loyalty-card">
                     <i class="fas fa-star"></i>
                     <h3>Gold Level</h3>
                     <p>Earn 2 points for every ₹100 spent. Monthly free service and priority booking.</p>
-                    <a href="#" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
+                    <a href="#contact" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
                 </div>
             </div>
+        </section>
+        
+        <section id="about" class="product-card">
+            <h2 class="section-heading">About Bliss Beauty Parlor</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;">
+                <div style="flex: 1; min-width: 300px;">
+                    <p style="margin-bottom: 1.5rem;">Founded in 2010, Bliss Beauty Parlor has been providing premium beauty services to our valued clients for over a decade. Our mission is to enhance your natural beauty while providing a relaxing and luxurious experience.</p>
+                    <p style="margin-bottom: 1.5rem;">All our beauty professionals are highly trained and certified, using only the best products and techniques to ensure you leave feeling beautiful and refreshed.</p>
+                    <p style="margin-bottom: 1.5rem;">We pride ourselves on our hygiene standards, personalized service, and attention to detail that keeps our clients coming back year after year.</p>
+                    <a href="#contact" class="btn">Visit Us</a>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Our Parlor" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-form">
+            <h2 class="section-heading">Contact Us</h2>
+            <p class="section-subheading">Have questions or want to book an appointment? Send us a message!</p>
+            
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Full Name*</label>
+                    <input type="text" id="contact-name" name="contact-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-email">Email Address*</label>
+                    <input type="email" id="contact-email" name="contact-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" name="contact-phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-service">Service Interested In</label>
+                    <select id="contact-service" name="contact-service">
+                        <option value="">-- Select a Service --</option>
+                        <option value="haircut">Haircut & Styling</option>
+                        <option value="facial">Premium Facial</option>
+                        <option value="manicure">Manicure</option>
+                        <option value="pedicure">Pedicure</option>
+                        <option value="makeup">Makeup Application</option>
+                        <option value="waxing">Waxing</option>
+                        <option value="spa">Spa Treatment</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact-message">Your Message*</label>
+                    <textarea id="contact-message" name="contact-message" required></textarea>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" class="btn">Send Message</button>
+                </div>
+            </form>
         </section>
         
         <section class="newsletter">
@@ -1463,7 +1219,7 @@
         </section>
     </div>
     
-    <footer id="contact">
+    <footer id="contact-footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Bliss Beauty Parlor</h3>
@@ -1482,9 +1238,9 @@
                 <h3>Quick Links</h3>
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
-                <a href="#booking">Book Appointment</a>
                 <a href="#products">Products</a>
                 <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
             </div>
             
             <div class="footer-section">
@@ -1523,266 +1279,34 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
                 
                 // Close mobile menu if open
                 document.getElementById('mainNav').classList.remove('active');
             });
         });
         
-        // Initialize variables
-        let currentMonth = new Date().getMonth();
-        let currentYear = new Date().getFullYear();
-        let selectedDate = null;
-        let selectedTime = null;
-        let selectedService = null;
-        
-        // Generate calendar
-        function generateCalendar() {
-            const calendar = document.getElementById('calendar');
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Update month header
-            document.getElementById('current-month').textContent = `${monthNames[currentMonth]} ${currentYear}`;
-            
-            // Clear existing calendar days (except headers)
-            while (calendar.children.length > 7) {
-                calendar.removeChild(calendar.lastChild);
-            }
-            
-            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-            const today = new Date();
-            
-            // Add empty cells for days before the first day of the month
-            for (let i = 0; i < firstDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day disabled';
-                calendar.appendChild(emptyDay);
-            }
-            
-            // Add days of the month
-            for (let i = 1; i <= daysInMonth; i++) {
-                const day = document.createElement('div');
-                day.className = 'calendar-day';
-                day.textContent = i;
-                
-                // Disable past dates
-                if ((currentYear < today.getFullYear()) || 
-                    (currentYear === today.getFullYear() && currentMonth < today.getMonth()) || 
-                    (currentYear === today.getFullYear() && currentMonth === today.getMonth() && i < today.getDate())) {
-                    day.classList.add('disabled');
-                } else {
-                    day.addEventListener('click', function() {
-                        // Remove selected class from all days
-                        document.querySelectorAll('.calendar-day').forEach(d => {
-                            d.classList.remove('selected');
-                        });
-                        
-                        // Add selected class to clicked day
-                        this.classList.add('selected');
-                        
-                        // Update selected date
-                        selectedDate = new Date(currentYear, currentMonth, i);
-                        
-                        // Generate time slots for selected date
-                        generateTimeSlots();
-                    });
-                }
-                
-                calendar.appendChild(day);
-            }
-        }
-        
-        // Generate time slots
-        function generateTimeSlots() {
-            const timeSlotsContainer = document.getElementById('time-slots');
-            timeSlotsContainer.innerHTML = '';
-            
-            // Parlor working hours (10AM to 8PM)
-            const startHour = 10;
-            const endHour = 20;
-            
-            // Generate slots every 30 minutes
-            for (let hour = startHour; hour < endHour; hour++) {
-                for (let minute = 0; minute < 60; minute += 30) {
-                    const timeSlot = document.createElement('div');
-                    timeSlot.className = 'time-slot';
-                    
-                    // Format time (10:00 AM format)
-                    const timeString = `${hour % 12 === 0 ? 12 : hour % 12}:${minute === 0 ? '00' : minute} ${hour < 12 ? 'AM' : 'PM'}`;
-                    timeSlot.textContent = timeString;
-                    timeSlot.dataset.time = `${hour}:${minute}`;
-                    
-                    timeSlot.addEventListener('click', function() {
-                        // Remove selected class from all time slots
-                        document.querySelectorAll('.time-slot').forEach(slot => {
-                            slot.classList.remove('selected');
-                        });
-                        
-                        // Add selected class to clicked slot
-                        this.classList.add('selected');
-                        
-                        selectedTime = this.dataset.time;
-                    });
-                    
-                    timeSlotsContainer.appendChild(timeSlot);
-                }
-            }
-        }
-        
-        // Month navigation
-        document.getElementById('prev-month').addEventListener('click', function() {
-            currentMonth--;
-            if (currentMonth < 0) {
-                currentMonth = 11;
-                currentYear--;
-            }
-            generateCalendar();
+            // In a real application, you would send the form data to a server here
+            alert('Thank you for your message! We will contact you soon.');
+            this.reset();
         });
         
-        document.getElementById('next-month').addEventListener('click', function() {
-            currentMonth++;
-            if (currentMonth > 11) {
-                currentMonth = 0;
-                currentYear++;
-            }
-            generateCalendar();
-        });
-        
-        // Service selection
-        document.getElementById('service').addEventListener('change', function() {
-            selectedService = this.options[this.selectedIndex].text;
-        });
-        
-        // Continue to payment button
-        document.getElementById('continue-to-payment').addEventListener('click', function() {
-            // Validate form
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const service = document.getElementById('service').value;
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            if (!name || !phone || !email || !service || !selectedDate || !selectedTime) {
-                alert('Please fill in all required fields and select a date and time.');
-                return;
-            }
-            
-            // Update booking summary
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('summary-service').textContent = `Service: ${selectedService}`;
-            document.getElementById('summary-date').textContent = `Date: ${selectedDate.toLocaleDateString('en-US', options)}`;
-            
-            const [hour, minute] = selectedTime.split(':');
-            const ampm = hour >= 12 ? 'PM' : 'AM';
-            const hour12 = hour % 12 === 0 ? 12 : hour % 12;
-            document.getElementById('summary-time').textContent = `Time: ${hour12}:${minute === '0' ? '00' : minute} ${ampm}`;
-            
-            // Extract price from service option
-            const serviceOption = document.getElementById('service').options[document.getElementById('service').selectedIndex];
-            const priceMatch = serviceOption.text.match(/₹(\d+)/);
-            const price = priceMatch ? priceMatch[1] : '0';
-            document.getElementById('summary-price').textContent = `Price: ₹${price}`;
-            
-            // Show payment section
-            document.querySelector('.booking-section').style.display = 'none';
-            document.querySelector('.payment-section').style.display = 'block';
-            
-            // Scroll to payment section
-            document.querySelector('.payment-section').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        // Payment method selection
-        document.querySelectorAll('.payment-method').forEach(method => {
-            method.addEventListener('click', function() {
-                // Remove selected class from all methods
-                document.querySelectorAll('.payment-method').forEach(m => {
-                    m.classList.remove('selected');
-                });
-                
-                // Add selected class to clicked method
-                this.classList.add('selected');
-                
-                // Hide all payment forms
-                document.querySelectorAll('.payment-form').forEach(form => {
-                    form.style.display = 'none';
-                });
-                
-                // Show selected payment form
-                const methodType = this.dataset.method;
-                document.getElementById(`${methodType}-form`).style.display = 'block';
-            });
-        });
-        
-        // Confirm payment button
-        document.getElementById('confirm-payment').addEventListener('click', function() {
-            // Validate payment form
-            const selectedMethod = document.querySelector('.payment-method.selected');
-            if (!selectedMethod) {
-                alert('Please select a payment method.');
-                return;
-            }
-            
-            const methodType = selectedMethod.dataset.method;
-            let isValid = true;
-            
-            if (methodType === 'credit') {
-                const cardNumber = document.getElementById('card-number').value;
-                const cardName = document.getElementById('card-name').value;
-                const cardExpiry = document.getElementById('card-expiry').value;
-                const cardCvv = document.getElementById('card-cvv').value;
-                
-                if (!cardNumber || !cardName || !cardExpiry || !cardCvv) {
-                    isValid = false;
-                }
-            } else if (methodType === 'upi') {
-                const upiId = document.getElementById('upi-id').value;
-                if (!upiId) {
-                    isValid = false;
-                }
-            } else if (methodType === 'wallet') {
-                const walletNumber = document.getElementById('wallet-number').value;
-                if (!walletNumber) {
-                    isValid = false;
-                }
-            }
-            
-            if (!isValid) {
-                alert('Please fill in all required payment details.');
-                return;
-            }
-            
-            // Show processing animation
-            this.disabled = true;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            
-            // Process payment (in a real app, this would call a payment API)
-            setTimeout(() => {
-                // Hide payment section
-                document.querySelector('.payment-section').style.display = 'none';
-                
-                // Update confirmation message
-                const confirmMessage = document.getElementById('confirm-message');
-                confirmMessage.textContent = `Your appointment for ${selectedService} on ${selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} at ${document.getElementById('summary-time').textContent.replace('Time: ', '')} has been confirmed.`;
-                
-                // Show confirmation
-                document.querySelector('.confirmation').style.display = 'block';
-                
-                // Scroll to confirmation
-                document.querySelector('.confirmation').scrollIntoView({ behavior: 'smooth' });
-                
-                // In a real app, you would send a confirmation email here
-            }, 2000);
-        });
-        
-        // Generate calendar on page load
-        window.addEventListener('DOMContentLoaded', function() {
-            generateCalendar();
-            
-            // Create floating decorative elements
-            createFloatingElements();
+            // In a real application, you would send the email to a mailing list
+            alert('Thank you for subscribing to our newsletter!');
+            this.reset();
         });
         
         // Create floating decorative elements
@@ -1821,6 +1345,36 @@
                 bubblesContainer.appendChild(bubble);
             }
         }
+        
+        // Animate elements when they come into view
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.service-card, .gallery-item, .loyalty-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.animationPlayState = 'running';
+                }
+            });
+        }
+        
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            createFloatingElements();
+            
+            // Set initial animation state
+            document.querySelectorAll('.service-card, .gallery-item, .loyalty-card').forEach(el => {
+                el.style.animationPlayState = 'paused';
+            });
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Run once on load to check visible elements
+            animateOnScroll();
+        });
     </script>
 </body>
 </html>
