@@ -27,6 +27,41 @@
             scroll-behavior: smooth;
         }
         
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.8rem 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .bottom-nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .bottom-nav-item.active,
+        .bottom-nav-item:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
@@ -48,6 +83,11 @@
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
         
         header {
@@ -132,7 +172,7 @@
         }
         
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('hero-background.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
             height: 500px;
             display: flex;
             align-items: center;
@@ -640,69 +680,6 @@
             transform: translateX(5px);
         }
         
-        /* Loyalty Program */
-        .loyalty-program {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 4rem 0;
-            text-align: center;
-            animation: fadeIn 1s ease-out;
-        }
-        
-        .loyalty-cards {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
-        }
-        
-        .loyalty-card {
-            background: linear-gradient(135deg, #f5f5f5, white);
-            padding: 2rem;
-            border-radius: 15px;
-            width: 250px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            animation: fadeIn 1s ease-out;
-            animation-fill-mode: both;
-        }
-        
-        .loyalty-card:nth-child(1) { animation-delay: 0.2s; }
-        .loyalty-card:nth-child(2) { animation-delay: 0.4s; }
-        .loyalty-card:nth-child(3) { animation-delay: 0.6s; }
-        
-        .loyalty-card:hover {
-            transform: rotateY(10deg) translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        
-        .loyalty-card i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            transition: all 0.3s;
-        }
-        
-        .loyalty-card:hover i {
-            transform: scale(1.2) rotate(10deg);
-            color: #ff4785;
-        }
-        
-        .loyalty-card h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-        
-        .loyalty-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-        
         /* Contact Form */
         .contact-form {
             background: white;
@@ -710,6 +687,7 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             margin: 4rem 0;
+            text-align: center;
             animation: fadeIn 1s ease-out;
         }
         
@@ -797,6 +775,10 @@
             font-size: 1.5rem;
             cursor: pointer;
             transition: all 0.3s;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 101;
         }
         
         .mobile-menu-btn:hover {
@@ -812,26 +794,33 @@
         
         @media (max-width: 768px) {
             nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 250px;
+                height: 100vh;
                 flex-direction: column;
-                align-items: center;
-                padding: 0.5rem;
-                display: none;
+                align-items: flex-start;
+                padding: 2rem 1rem;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-out;
+                z-index: 100;
+                background: white;
             }
             
             nav.active {
-                display: flex;
+                transform: translateX(0);
             }
             
             nav a {
                 margin: 0.5rem 0;
-                padding: 0.5rem 0;
+                padding: 0.5rem 1rem;
+                width: 100%;
             }
             
             .mobile-menu-btn {
                 display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
             }
             
             .hero {
@@ -923,7 +912,7 @@
             
             <div class="services">
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('hair-styling.jpg');"></div> <!-- Add your hair styling image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Hair Styling</h3>
                         <p>Professional haircuts, styling, and treatments for all hair types. Our expert stylists will give you the perfect look.</p>
@@ -933,7 +922,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('facial.jpg');"></div> <!-- Add your facial image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Facial & Skin Care</h3>
                         <p>Rejuvenating facials and skin treatments for a glowing complexion. Experience our premium skincare products.</p>
@@ -943,7 +932,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('manicure.jpg');"></div> <!-- Add your manicure image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Manicure & Pedicure</h3>
                         <p>Nail care services including polish, gel, and nail art. Relax while we pamper your hands and feet.</p>
@@ -953,7 +942,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('makeup.jpg');"></div> <!-- Add your makeup image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Makeup Artistry</h3>
                         <p>Professional makeup for any occasion. From natural looks to glamorous evening makeup.</p>
@@ -963,7 +952,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('waxing.jpg');"></div> <!-- Add your waxing image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1526947425960-945c6e72858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Waxing & Threading</h3>
                         <p>Hair removal services with minimal discomfort. Our experts use premium products for smooth skin.</p>
@@ -973,7 +962,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('spa.jpg');"></div> <!-- Add your spa image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Spa Treatments</h3>
                         <p>Relaxing massage and body treatments. Rejuvenate your body and mind with our spa packages.</p>
@@ -990,7 +979,7 @@
             
             <div class="services">
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('hair-products.jpg');"></div> <!-- Add your hair products image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Hair Care Line</h3>
                         <p>Professional shampoos, conditioners, and treatments for all hair types. Nourish and protect your hair.</p>
@@ -1000,7 +989,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('skincare-products.jpg');"></div> <!-- Add your skincare products image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Skincare Collection</h3>
                         <p>Cleansers, moisturizers, and serums for a radiant complexion. Dermatologist tested formulas.</p>
@@ -1010,7 +999,7 @@
                 </div>
                 
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('nail-products.jpg');"></div> <!-- Add your nail products image -->
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1607602132700-068258944f72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
                     <div class="service-content">
                         <h3>Nail Care Products</h3>
                         <p>Premium polishes, treatments, and care products. Salon-quality results at home.</p>
@@ -1031,7 +1020,7 @@
                         The best beauty parlor in town! The staff is professional and the atmosphere is so relaxing. I always leave feeling pampered and beautiful.
                     </div>
                     <div class="testimonial-author">
-                        <img src="client1.jpg" alt="Priya Sharma" class="author-avatar"> <!-- Add client 1 image -->
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Sharma" class="author-avatar">
                         <div class="author-info">
                             <h4>Priya Sharma</h4>
                             <p>Regular Client</p>
@@ -1044,7 +1033,7 @@
                         I had my wedding makeup done here and it was absolutely perfect! The makeup artist listened to what I wanted and made me look stunning.
                     </div>
                     <div class="testimonial-author">
-                        <img src="client2.jpg" alt="Ananya Patel" class="author-avatar"> <!-- Add client 2 image -->
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Ananya Patel" class="author-avatar">
                         <div class="author-info">
                             <h4>Ananya Patel</h4>
                             <p>Bride</p>
@@ -1057,7 +1046,7 @@
                         The facial treatments here have transformed my skin. After just a few sessions, my complexion is clearer and brighter than it's been in years.
                     </div>
                     <div class="testimonial-author">
-                        <img src="client3.jpg" alt="Riya Kapoor" class="author-avatar"> <!-- Add client 3 image -->
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Riya Kapoor" class="author-avatar">
                         <div class="author-info">
                             <h4>Riya Kapoor</h4>
                             <p>Skincare Client</p>
@@ -1070,7 +1059,7 @@
                         As a man, I was hesitant to visit a beauty parlor, but the haircut and beard trim I got here was the best I've ever had. Highly recommended!
                     </div>
                     <div class="testimonial-author">
-                        <img src="client4.jpg" alt="Rahul Verma" class="author-avatar"> <!-- Add client 4 image -->
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rahul Verma" class="author-avatar">
                         <div class="author-info">
                             <h4>Rahul Verma</h4>
                             <p>Men's Grooming</p>
@@ -1086,63 +1075,33 @@
             
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="bridal-makeup.jpg" alt="Bridal Makeup" class="gallery-img"> <!-- Add bridal makeup image -->
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bridal Makeup" class="gallery-img">
                     <div class="gallery-caption">Bridal Makeup</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="evening-makeup.jpg" alt="Evening Makeup" class="gallery-img"> <!-- Add evening makeup image -->
+                    <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evening Makeup" class="gallery-img">
                     <div class="gallery-caption">Evening Makeup</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="hair-styling-gallery.jpg" alt="Hair Styling" class="gallery-img"> <!-- Add hair styling image -->
+                    <img src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hair Styling" class="gallery-img">
                     <div class="gallery-caption">Hair Styling</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="spa-treatment.jpg" alt="Spa Treatment" class="gallery-img"> <!-- Add spa treatment image -->
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Spa Treatment" class="gallery-img">
                     <div class="gallery-caption">Spa Treatment</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="nail-art.jpg" alt="Nail Art" class="gallery-img"> <!-- Add nail art image -->
+                    <img src="https://images.unsplash.com/photo-1596704017254-975dad1a4a7a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nail Art" class="gallery-img">
                     <div class="gallery-caption">Nail Art</div>
                 </div>
                 
                 <div class="gallery-item">
-                    <img src="facial-treatment.jpg" alt="Facial Treatment" class="gallery-img"> <!-- Add facial treatment image -->
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Facial Treatment" class="gallery-img">
                     <div class="gallery-caption">Facial Treatment</div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="loyalty-program">
-            <h2 class="section-heading">Loyalty Rewards Program</h2>
-            <p class="section-subheading">
-                Join our loyalty program and earn points with every visit that can be redeemed for discounts, free services, and exclusive perks.
-            </p>
-            
-            <div class="loyalty-cards">
-                <div class="loyalty-card">
-                    <i class="fas fa-gem"></i>
-                    <h3>Bronze Level</h3>
-                    <p>Earn 1 point for every ₹100 spent. Redeem 100 points for ₹500 off.</p>
-                    <a href="#contact" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
-                </div>
-                
-                <div class="loyalty-card">
-                    <i class="fas fa-crown"></i>
-                    <h3>Silver Level</h3>
-                    <p>Earn 1.5 points for every ₹100 spent. Get a free facial after 5 visits.</p>
-                    <a href="#contact" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
-                </div>
-                
-                <div class="loyalty-card">
-                    <i class="fas fa-star"></i>
-                    <h3>Gold Level</h3>
-                    <p>Earn 2 points for every ₹100 spent. Monthly free service and priority booking.</p>
-                    <a href="#contact" class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Join Now</a>
                 </div>
             </div>
         </section>
@@ -1157,7 +1116,7 @@
                     <a href="#contact" class="btn">Visit Us</a>
                 </div>
                 <div style="flex: 1; min-width: 300px;">
-                    <img src="parlor-interior.jpg" alt="Our Parlor" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"> <!-- Add parlor interior image -->
+                    <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Our Parlor" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                 </div>
             </div>
         </section>
@@ -1219,6 +1178,26 @@
         </section>
     </div>
     
+    <!-- Bottom Navigation Bar -->
+    <div class="bottom-nav">
+        <a href="#home" class="bottom-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#services" class="bottom-nav-item">
+            <i class="fas fa-spa"></i>
+            <span>Services</span>
+        </a>
+        <a href="#gallery" class="bottom-nav-item">
+            <i class="fas fa-images"></i>
+            <span>Gallery</span>
+        </a>
+        <a href="#contact" class="bottom-nav-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>Contact</span>
+        </a>
+    </div>
+    
     <footer id="contact-footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -1274,6 +1253,13 @@
             document.getElementById('mainNav').classList.toggle('active');
         });
         
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mainNav').classList.remove('active');
+            });
+        });
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1286,8 +1272,11 @@
                     });
                 }
                 
-                // Close mobile menu if open
-                document.getElementById('mainNav').classList.remove('active');
+                // Update active state in bottom nav
+                document.querySelectorAll('.bottom-nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
             });
         });
         
@@ -1348,7 +1337,7 @@
         
         // Animate elements when they come into view
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.service-card, .gallery-item, .loyalty-card');
+            const elements = document.querySelectorAll('.service-card, .gallery-item');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -1360,20 +1349,43 @@
             });
         }
         
+        // Update active nav item based on scroll position
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section');
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            document.querySelectorAll('.bottom-nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
         // Initialize on page load
         window.addEventListener('DOMContentLoaded', function() {
             createFloatingElements();
             
             // Set initial animation state
-            document.querySelectorAll('.service-card, .gallery-item, .loyalty-card').forEach(el => {
+            document.querySelectorAll('.service-card, .gallery-item').forEach(el => {
                 el.style.animationPlayState = 'paused';
             });
             
-            // Add scroll event listener
+            // Add scroll event listeners
             window.addEventListener('scroll', animateOnScroll);
+            window.addEventListener('scroll', updateActiveNav);
             
             // Run once on load to check visible elements
             animateOnScroll();
+            updateActiveNav();
         });
     </script>
 </body>
