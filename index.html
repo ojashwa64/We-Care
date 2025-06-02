@@ -93,7 +93,7 @@
         }
         
         header {
-            background-color:   rgb(243, 140, 207);
+            background-color:   #F5F5F5;
             color: white;
             padding: 2rem 1rem;
             text-align: center;
@@ -886,7 +886,7 @@
             <i class="fas fa-bars"></i>
         </button>
         <img src="./images/logo/Object 10.png" alt="" style="height: 100px;" style="width: 100px;" >
-        <p>YOUR BEAUTY IS OUR PASSION</p>
+        <p style="color: var(--dark);">YOUR BEAUTY IS OUR PASSION</p>
     </header>
     
     <nav id="mainNav">
@@ -896,7 +896,7 @@
         <a href="#gallery">Gallery</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#about">About Us</a>
-        <a href="#contact">Contact</a>
+        
     </nav>
     
     <div class="container">
@@ -1238,62 +1238,7 @@
                 </div>
             </div>
         </section>
-        
-        <section id="contact" class="contact-form">
-            <h2 class="section-heading">Contact Us</h2>
-            <p class="section-subheading">Have questions or want to book an appointment? Send us a message!</p>
-            
-            <form id="contact-form">
-                <div class="form-group">
-                    <label for="contact-name">Full Name*</label>
-                    <input type="text" id="contact-name" name="contact-name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="contact-email">Email Address*</label>
-                    <input type="email" id="contact-email" name="contact-email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="contact-phone">Phone Number</label>
-                    <input type="tel" id="contact-phone" name="contact-phone">
-                </div>
-                
-                <div class="form-group">
-                    <label for="contact-service">Service Interested In</label>
-                    <select id="contact-service" name="contact-service">
-                        <option value="">-- Select a Service --</option>
-                        <option value="haircut">Haircut & Styling</option>
-                        <option value="hydra-facial">Hydra Facial</option>
-                        <option value="facial">Premium Facial</option>
-                        <option value="manicure">Manicure</option>
-                        <option value="pedicure">Pedicure</option>
-                        <option value="bridal-makeup">Bridal Makeup</option>
-                        <option value="hd-makeup">HD Makeup</option>
-                        <option value="normal-makeup">Normal Makeup</option>
-                        <option value="waxing">Waxing</option>
-                        <option value="threading">Threading</option>
-                        <option value="bleach">Bleach</option>
-                        <option value="hair-color">Hair Color</option>
-                        <option value="highlights">Highlights</option>
-                        <option value="root-touchup">Root Touch-up</option>
-                        <option value="hair-treatment">Hair Treatment</option>
-                        <option value="spa">Spa Treatment</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="contact-message">Your Message*</label>
-                    <textarea id="contact-message" name="contact-message" required></textarea>
-                </div>
-                
-                <div style="text-align: center;">
-                    <button type="submit" class="btn">Send Message</button>
-                </div>
-            </form>
-        </section>
-        
-        <section class="newsletter">
+          <section class="newsletter">
             <div class="newsletter-content">
                 <h2>Join Our Beauty Community</h2>
                 <p>Subscribe to our newsletter for exclusive offers, beauty tips, and the latest trends.</p>
