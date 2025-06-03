@@ -787,6 +787,81 @@
             transform: scale(1.1);
         }
         
+        /* Social Media Floaters */
+        .social-floaters {
+            position: fixed;
+            right: 20px;
+            bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+        
+        .social-floater {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-floater::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .social-floater:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .social-floater:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .whatsapp {
+            background-color: #25D366;
+        }
+        
+        .instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737, #FCAF45, #FFDC80);
+        }
+        
+        .facebook {
+            background-color: #1877F2;
+        }
+        
+        .social-tooltip {
+            position: absolute;
+            right: 60px;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .social-floater:hover .social-tooltip {
+            opacity: 1;
+        }
+        
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
@@ -845,6 +920,17 @@
             .newsletter-form button {
                 border-radius: 50px;
             }
+            
+            .social-floaters {
+                bottom: 80px;
+                right: 10px;
+            }
+            
+            .social-floater {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
         }
         
         @media (max-width: 576px) {
@@ -879,6 +965,22 @@
         <div class="bubble" style="width: 110px; height: 110px; top: 30%; left: 85%; animation-duration: 16s;"></div>
     </div>
     
+    <!-- Floating Social Media Buttons -->
+    <div class="social-floaters">
+        <a href="https://wa.me/919876543210" class="social-floater whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span class="social-tooltip">Chat with us on WhatsApp</span>
+        </a>
+        <a href="https://instagram.com/blissbeautyparlor" class="social-floater instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+            <span class="social-tooltip">Follow us on Instagram</span>
+        </a>
+        <a href="https://facebook.com/blissbeautyparlor" class="social-floater facebook" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+            <span class="social-tooltip">Like us on Facebook</span>
+        </a>
+    </div>
+    
     <header>
         <div class="header-decoration decoration-1"></div>
         <div class="header-decoration decoration-2"></div>
@@ -896,7 +998,6 @@
         <a href="#gallery">Gallery</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#about">About Us</a>
-        
     </nav>
     
     <div class="container">
@@ -1166,6 +1267,240 @@
                         <div class="author-info">
                             <h4>Tanvi Malhotra</h4>
                             <p>Nail Care Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I had my first facial here and it was an amazing experience. My skin has never felt so soft and refreshed. Will definitely be coming back!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Kavya Nair" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Kavya Nair</h4>
+                            <p>First-time Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The bridal package was worth every penny! From hair to makeup to mehndi, everything was perfect on my wedding day.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/38.jpg" alt="Ishaani Roy" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ishaani Roy</h4>
+                            <p>Bride</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I bring my whole family here for grooming services. They're great with kids and my husband loves their beard trims.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Meera Krishnan" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Meera Krishnan</h4>
+                            <p>Family Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The keratin treatment saved my damaged hair! It's now smooth, shiny, and manageable. Thank you Bliss Beauty!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/29.jpg" alt="Anjali Iyer" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Anjali Iyer</h4>
+                            <p>Hair Treatment Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I've tried many parlors in the city, but none compare to Bliss Beauty. Their attention to detail is unmatched.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/41.jpg" alt="Divya Menon" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Divya Menon</h4>
+                            <p>Long-time Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The waxing service here is virtually painless! They use high-quality products and the staff is so gentle.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/36.jpg" alt="Shivani Kapoor" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Shivani Kapoor</h4>
+                            <p>Waxing Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        My daughter's graduation makeup was done here and she looked absolutely radiant. The makeup lasted through tears and hugs!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/50.jpg" alt="Preeti Choudhary" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Preeti Choudhary</h4>
+                            <p>Parent</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The staff remembers my preferences every time I visit. It's this personalized service that keeps me coming back.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/47.jpg" alt="Radhika Sharma" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Radhika Sharma</h4>
+                            <p>Regular Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I got a complete makeover for my anniversary and my husband couldn't stop complimenting me. Thank you for making me feel special!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/53.jpg" alt="Nandini Reddy" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Nandini Reddy</h4>
+                            <p>Special Occasion Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The ambiance is so relaxing and the staff is so friendly. I always look forward to my monthly visits here.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/59.jpg" alt="Aishwarya Nair" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Aishwarya Nair</h4>
+                            <p>Monthly Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I had my engagement makeup trial here and it was perfect. The artist understood exactly the look I wanted.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/31.jpg" alt="Pari Gupta" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Pari Gupta</h4>
+                            <p>Bride-to-be</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The pedicure chairs are so comfortable and the foot massage is heavenly. I fall asleep every time!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/42.jpg" alt="Sonia Mehra" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Sonia Mehra</h4>
+                            <p>Pedicure Lover</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I was nervous about coloring my hair for the first time, but the stylist guided me perfectly. The color turned out amazing!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/27.jpg" alt="Tanya Malhotra" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Tanya Malhotra</h4>
+                            <p>First-time Color Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The bridal henna artist created the most intricate design I've ever seen. It lasted for weeks and got so many compliments!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/34.jpg" alt="Zara Khan" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Zara Khan</h4>
+                            <p>Bride</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I got a complete glow-up package before my college reunion and all my friends were asking where I got it done!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/39.jpg" alt="Riya Bhatia" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Riya Bhatia</h4>
+                            <p>Special Event Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The facial with the gold mask was worth every penny! My skin was glowing for days afterward.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/48.jpg" alt="Neha Kapoor" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Neha Kapoor</h4>
+                            <p>Luxury Facial Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        I've been coming here for 5 years and the quality has never dipped. Consistent excellence!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/57.jpg" alt="Maya Sharma" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Maya Sharma</h4>
+                            <p>Loyal Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        The staff helped me choose the perfect hairstyle for my face shape. I've never received so many compliments on my hair!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/63.jpg" alt="Priyanka Joshi" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Priyanka Joshi</h4>
+                            <p>Hairstyle Client</p>
                         </div>
                     </div>
                 </div>
